@@ -78,10 +78,20 @@ export default {
             }
           })
         },
+        loginIn2(){
+          let _this = this;
+          if(_this.param.username == 'admin' && _this.param.password == 123456){
+             this.$message.success('登录成功');
+             localStorage.setItem('ms_username', _this.param.username);
+             localStorage.setItem('authority', _this.authority_radio);
+             this.$router.push('/');
+          }
+        },
         submitForm() {
             this.$refs.login.validate(valid => {
                 if (valid) {
-                    this.loginIn();
+                    // this.loginIn();
+                    this.loginIn2();
                 } else {
                     this.$message.error('请输入账号和密码');
                     console.log('error submit!!');

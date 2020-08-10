@@ -95,16 +95,6 @@ export default new Router({
                   component: () => import('../components/page/reportManage/checkin_info_report.vue'),
                    meta: { title: '入住客人报表' ,permission: true ,auth_admin:true ,auth_jinLi:true}
                 },
-                // {
-                //   path:'/today_order_info',
-                //   component: () => import('../components/page/reportManage/today_order_info.vue'),
-                //    meta: { title: '当日预定客人报表',permission: true ,auth_admin:true ,auth_jinLi:true}
-                // },
-                // {
-                //   path:'/today_checkin_info',
-                //   component: () => import('../components/page/reportManage/today_checkin_info.vue'),
-                //    meta: { title: '当日入住客人报表',permission: true ,auth_admin:true ,auth_jinLi:true}
-                // },
                 
                 {
                   path:'/today_bill_info',
@@ -130,69 +120,6 @@ export default new Router({
                    meta: { title: '日志信息维护',permission: true ,auth_admin:true }
                 },
 
-                //功能页面
-                {
-                    path: '/icon',
-                    component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
-                    meta: { title: '自定义图标' }
-                },
-                {
-                    path: '/table',
-                    component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
-                    meta: { title: '基础表格' }
-                },
-                {
-                    path: '/tabs',
-                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
-                    meta: { title: 'tab选项卡' }
-                },
-                {
-                    path: '/form',
-                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
-                    meta: { title: '基本表单' }
-                },
-                {
-                    // 富文本编辑器组件
-                    path: '/editor',
-                    component: () => import(/* webpackChunkName: "editor" */ '../components/page/VueEditor.vue'),
-                    meta: { title: '富文本编辑器' }
-                },
-                {
-                    // markdown组件
-                    path: '/markdown',
-                    component: () => import(/* webpackChunkName: "markdown" */ '../components/page/Markdown.vue'),
-                    meta: { title: 'markdown编辑器' }
-                },
-                {
-                    // 图片上传组件
-                    path: '/upload',
-                    component: () => import(/* webpackChunkName: "upload" */ '../components/page/Upload.vue'),
-                    meta: { title: '文件上传' }
-                },
-                {
-                    // vue-schart组件
-                    path: '/charts',
-                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/BaseCharts.vue'),
-                    meta: { title: 'schart图表' }
-                },
-                {
-                    // 拖拽列表组件
-                    path: '/drag',
-                    component: () => import(/* webpackChunkName: "drag" */ '../components/page/DragList.vue'),
-                    meta: { title: '拖拽列表' }
-                },
-                {
-                    // 拖拽Dialog组件
-                    path: '/dialog',
-                    component: () => import(/* webpackChunkName: "dragdialog" */ '../components/page/DragDialog.vue'),
-                    meta: { title: '拖拽弹框' }
-                },
-                {
-                    // 国际化组件
-                    path: '/i18n',
-                    component: () => import(/* webpackChunkName: "i18n" */ '../components/page/I18n.vue'),
-                    meta: { title: '国际化' }
-                },
                 {
                     // 权限页面
                     path: '/permission',
