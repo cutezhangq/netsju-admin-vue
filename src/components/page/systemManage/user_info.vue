@@ -22,7 +22,7 @@
                 class="handle-del mr10"
                 @click="addDate"
         >新增数据</el-button>
-         <el-tooltip content="1:超级管理员、2:经理、3:前台人员" placement="top">
+         <el-tooltip content="1:超级管理员、2:平台工作人员、3:商铺主" placement="top">
            <el-button
                   type="primary"
                   icon="el-icon-lock"

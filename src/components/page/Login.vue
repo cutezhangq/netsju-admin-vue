@@ -1,7 +1,7 @@
 <template>
     <div class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">SJU酒店管理系统</div>
+            <div class="ms-title">网罗SJU管理系统</div>
             <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
                 <!-- 用户名 -->
                 <el-form-item prop="username">
@@ -24,8 +24,8 @@
                 <el-form-item prop="authority_radio">
                   <el-radio-group v-model="authority_radio">
                     <el-radio :label="1">超级管理员</el-radio>
-                    <el-radio :label="2">经理</el-radio>
-                    <el-radio :label="3">前台人员</el-radio>
+                    <el-radio :label="2">平台工作人员</el-radio>
+                    <el-radio :label="3">商铺主</el-radio>
                   </el-radio-group>
                 </el-form-item>
                 

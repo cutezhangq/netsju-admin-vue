@@ -155,11 +155,11 @@
         nv:579, //数量
         name: localStorage.getItem('ms_username'),
         todoList: [{
-            title: '直营酒店对检查结果制定实际可行的整改方审定批',
+            title: '直营商铺对检查结果制定实际可行的整改方审定批',
             status: false
           },
           {
-            title: '对于直营酒店汇报周报、月报、及各类工作事项进行一审阅批示。',
+            title: '对于直营商铺汇报周报、月报、及各类工作事项进行一审阅批示。',
             status: false
           },
           {
@@ -167,15 +167,15 @@
             status: false
           },
           {
-            title: '直营酒店对考评结果分析,并组织团队进行总结',
+            title: '直营商铺对考评结果分析,并组织团队进行总结',
             status: false
           },
           {
-            title: 'SJU酒店内容整改',
+            title: '入驻商铺内容整改',
             status: true
           },
           {
-            title: '将直营酒店每月考评结果通过OA系统进行公布',
+            title: '将直营商铺每月考评结果通过OA系统进行公布',
             status: true
           }
         ],
@@ -253,11 +253,11 @@
       role() {
         let authority = localStorage.getItem('authority');
         if(authority == 1){
-          return this.role = '超级管理员';
-        }else if(authority == 2){
-          return this.role = '经理';
+          return this.role = '超级管理员';  //所有权限
+        }else if(authority == 2){ 
+          return this.role = '平台工作人员';    //对入驻商铺进行管理（平台工作人员）
         }else if(authority == 3){
-          return this.role = '酒店前台';
+          return this.role = '商铺主';  //对商品进行管理（入驻平台的商铺店主）
         }
         // return this.name === 'admin' ? '超级管理员' : '普通用户';
       },
@@ -363,7 +363,7 @@
       //柱状图
       init_barChart() {
         //创建一个初始化的函数
-        this.msg.barChart_msg = "酒店销量柱状图";
+        this.msg.barChart_msg = "商品销量柱状图";
         const barChart = new this.$G2.Chart({
           container: "barChart",
           autoFit: true,
@@ -386,7 +386,7 @@
 
       // 折线散点图
       init_lineChart() {
-        this.msg.lineChart_msg = "酒店人流量密度图";
+        this.msg.lineChart_msg = "商品物流量密度图";
         fetch_diamond(this.query)
           .then((data) => {
             const lineChart = new this.$G2.Chart({
@@ -460,7 +460,7 @@
         };
       },
       init_keywords() {
-        this.msg.keywords_msg = "SJU酒店词云";
+        this.msg.keywords_msg = "SJU商铺词云";
         let _this = this;
         // 给 point 注册一个词云的 shape
         this.$G2.registerShape('point', 'cloud', {
