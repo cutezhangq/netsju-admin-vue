@@ -32,7 +32,6 @@
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm()">登录</el-button>
                 </div>
-                <!-- <p class="login-tips">Tips : </p> -->
             </el-form>
         </div>
     </div>
