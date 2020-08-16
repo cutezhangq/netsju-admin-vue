@@ -21,15 +21,38 @@
                     class="handle-del mr10"
                     @click="addDate"
                 >新增数据</el-button>
+        <el-tooltip content="新增数据、删除单条数据、查询全部数据" placement="top">
+              <el-button
+              type="info"
+              icon="el-icon-info"
+              class="handle-del mr10"
+          >备注</el-button>
+          </el-tooltip>
             </div>
             <!-- 表格的表头：表内容通过prop绑定数据 -->
             <el-table :data="commentData" border class="table" ref="multipleTable" header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange">
+                <el-table-column prop="id" label="评论序号" align="center"></el-table-column>
                 <el-table-column prop="productId" label="商品序号" align="center"></el-table-column>
                 <el-table-column prop="username" label="发表人" align="center"></el-table-column>
                 <el-table-column prop="createTime" label="发表时间" align="center"></el-table-column>
                 <el-table-column prop="replayCommentId" label="回复数" align="center"></el-table-column>
                 <el-table-column prop="content" label="评论详情" align="center"></el-table-column>
+                <el-table-column label="操作" width="180" align="center">
+                    <template slot-scope="scope">
+                        <!-- <el-button
+                            type="text"
+                            icon="el-icon-edit"
+                            @click="handleEdit(scope.$index, scope.row)"
+                        >编辑</el-button> -->
+                        <el-button
+                            type="text"
+                            icon="el-icon-delete"
+                            class="red"
+                            @click="handleDelete(scope.$index, scope.row)"
+                        >删除</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
             <!-- 页码 -->
             <div class="pagination">
@@ -62,7 +85,7 @@
 </template>
 
 <script>
-import {get,post} from '@/utils/request';
+import {get,post,del,put} from '@/utils/request';
 import {SH_API} from '@/api/index';
 export default {
     name: 'comment',
@@ -75,7 +98,7 @@ export default {
                 pageSize: 5,
             },
             add_form:{ //新增数据
-              productId: "",
+              productId: Number,
               content: "",
             }, 
             commentData: [],
@@ -97,8 +120,8 @@ export default {
           get(SH_API+`/comment/1006007`)
           .then( data =>{
             if(data.code === 200){
-              if(data.data.infoList.length > 0){
-                this.commentData = data.data.infoList;
+              if(data.data.length > 0){
+                this.commentData = data.data;
                 this.pageTotal = data.data.count || 0;  //总条数
                 this.query.pageIndex = data.data.index;  //当前页号
                 this.query.pageSize = data.data.pageSize  //限制每页数据条数
@@ -170,10 +193,13 @@ export default {
         },
         //保存新增
         saveAdd(){
-          post(SH_API+"/comment",{
-            productId:this.add_form.productId,
-            content: this.add_form.content
-          })
+          var obj = {
+            "productId":this.add_form.productId,
+            "content": this.add_form.content,
+            "userId": 1
+          }
+          var myJson=JSON.stringify(obj);
+          post(SH_API+"/comment",myJson)
           .then( data =>{
             if(data.code === 200){
               this.addVisible =  false;
@@ -182,7 +208,32 @@ export default {
             }
           })
         },
-       
+       //删除一条数据
+        delOneDate(index){
+          let cur_id = this.commentData[index].id;
+          del(SH_API+`/comment/${cur_id}`)
+          .then(data =>{
+            if(data.code === 200){
+              this.$message.error(`删除了${this.commentData[index].goods_name},1条数据`);
+              this.commentData.splice(index, 1);
+              this.getDate();
+            }
+          })
+        },
+
+        // 删除操作
+        handleDelete(index, row) {
+            // 二次确认删除
+            this.$confirm('确定要删除吗？', '提示', {
+                type: 'warning'
+            })
+            .then(() => {
+              this.delOneDate(index);
+            })
+            .catch(() => {});
+        },
+
+    
         // 分页导航
         handlePageChange(val) {
           //更新视图
