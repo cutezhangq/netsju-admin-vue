@@ -22,6 +22,13 @@
                     class="handle-del mr10"
                     @click="addDate"
                 >新增数据</el-button> -->
+          <el-tooltip content="删除单条数据、修改数据、查询全部数据" placement="top">
+              <el-button
+              type="info"
+              icon="el-icon-info"
+              class="handle-del mr10"
+          >备注</el-button>
+          </el-tooltip>
                 <!-- 搜索 关键词-->
                 <!-- <el-select v-model="query.queryName" placeholder="关键词" class="handle-select mr10">
                     <el-option key="1" label="商品序列号" value="pid"></el-option>

@@ -99,7 +99,7 @@
 import {get,post,del,put} from '@/utils/request';
 import {SH_API} from '@/api/index'
 export default {
-    name: 'floor_info',
+    name: 'order',
     data() {
         return {
             query: {
@@ -133,7 +133,7 @@ export default {
       },
         //获取roomType数据
         getDate(){
-          get(SH_API + `/order/search/${1}`)
+          post(SH_API + `/order/search/0`,{})
           .then( data =>{
             if(data.code === 200){
               if(data.data.infoList.length > 0){
