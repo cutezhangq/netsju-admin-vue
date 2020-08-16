@@ -10,27 +10,27 @@
         <div class="container">
             <!-- 新增、删除、搜索 -->
             <div class="handle-box">
-                <el-button
+                <!-- <el-button
                     type="danger"
                     icon="el-icon-delete"
                     class="handle-del mr10"
                     @click="delAllSelection"
-                >批量删除</el-button>
-                <el-button
+                >批量删除</el-button> -->
+                <!-- <el-button
                     type="success"
                     icon="el-icon-plus"
                     class="handle-del mr10"
                     @click="addDate"
-                >新增数据</el-button>
+                >新增数据</el-button> -->
                 <!-- 搜索 关键词-->
-                <el-select v-model="query.queryName" placeholder="关键词" class="handle-select mr10">
+                <!-- <el-select v-model="query.queryName" placeholder="关键词" class="handle-select mr10">
                     <el-option key="1" label="商品序列号" value="pid"></el-option>
                     <el-option key="2" label="商品名称" value="pname"></el-option>
                     <el-option key="3" label="商品发布人" value="username"></el-option>
                     <el-option key="4" label="——全部——" value="0"></el-option>
                 </el-select>
                 <el-input v-model="query.queryContent" placeholder="输入搜索信息..." class="handle-input mr10"></el-input>
-                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button> -->
             </div>
             <!-- 表格的表头：表内容通过prop绑定数据 -->
             <el-table
@@ -41,9 +41,21 @@
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
+                <el-table-column prop="id" label="商品ID" align="center"></el-table-column>
                 <el-table-column prop="name" label="商品名称" align="center"></el-table-column>
+                 <el-table-column prop="pimg" label="商品图片" align="center">
+                    <template   slot-scope="scope">            
+                        <img :src="scope.row.image" min-width="150" height="150"/><!-- min-width="70" height="70" -->
+                    </template> 
+                </el-table-column>
                 <el-table-column prop="price" label="商品价格" align="center"></el-table-column>
                 <el-table-column prop="productNum" label="商品数量" align="center"></el-table-column>
+                <el-table-column prop="userName" label="用户名称" align="center"></el-table-column>
+                  <el-table-column prop="pimg" label="用户头像" align="center">
+                    <template   slot-scope="scope">            
+                        <img :src="scope.row.userImg" min-width="70" height="70"/><!-- min-width="70" height="70" -->
+                    </template> 
+                </el-table-column>
                 <el-table-column prop="comment" label="备注" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -79,8 +91,8 @@
                 <el-form-item label="商品序号">
                     <el-input v-model="add_form.productId"></el-input>
                 </el-form-item>
-                <el-form-item label="商品数量">
-                    <el-input v-model="add_form.productNum"></el-input>
+                <el-form-item label="商品名称">
+                    <el-input v-model="add_form.name"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -92,9 +104,27 @@
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="商品ID">
+                    <el-input v-model="form.id" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="商品名称">
+                    <el-input v-model="form.name" :disabled="true"></el-input>
+                </el-form-item>
+                <!-- <el-form-item label="商品图片">
+                    <img :src="form.pimg" min-width="70" height="70"/>
+                </el-form-item> -->
+                <el-form-item label="商品价格">
+                    <el-input v-model="form.price" :disabled="true"></el-input>
+                </el-form-item>
                 <el-form-item label="商品数量">
                     <el-input v-model="form.productNum"></el-input>
                 </el-form-item>
+                <el-form-item label="用户名称">
+                    <el-input v-model="form.userName" :disabled="true"></el-input>
+                </el-form-item>
+                <!-- <el-form-item label="用户头像">
+                  <img :src="form.pimg" min-width="70" height="70"/>
+                </el-form-item> -->
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
@@ -108,7 +138,7 @@
 import {get,post,del,put} from '@/utils/request';
 import {SH_API} from '@/api/index'
 export default {
-    name: 'floor_info',
+    name: 'cart',
     data() {
         return {
             query: {
@@ -252,9 +282,7 @@ export default {
         // 保存编辑
         saveEdit() {
           let curEdit_row = this.form;
-          put(SH_API+"/address",{
-            number: curEdit_row.productNum
-          })
+          put(SH_API+`/cart/updateProductNum?cartId=${curEdit_row.id}&productNum=${curEdit_row.productNum}`)
           .then( data =>{
             if(data.code === 200){
               this.editVisible = false;

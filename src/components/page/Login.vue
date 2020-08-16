@@ -39,7 +39,7 @@
 
 <script>
 import {get,post} from '@/utils/request'
-
+import {SH_API} from '@/api/index'
 export default {
     data: function() {
         return {
@@ -80,12 +80,40 @@ export default {
         loginIn2(){
           let _this = this;
           if(_this.param.username == 'admin' && _this.param.password == 123456){
-             this.$message.success('登录成功');
+             this.$message.success('登录成功');   //超级管理员
              localStorage.setItem('ms_username', _this.param.username);
              localStorage.setItem('authority', _this.authority_radio);
              this.$router.push('/');
+          }else{
+            if(_this.param.username == 'zq' && _this.param.password == 123456){
+               this.$message.success('登录成功');   //平台工作人员
+               localStorage.setItem('ms_username', _this.param.username);
+               localStorage.setItem('authority', _this.authority_radio);
+               this.$router.push('/');
+            }else{
+              if(_this.param.username == 'shanshan' && _this.param.password == 123){
+                 this.$message.success('登录成功');    //商铺主
+                 localStorage.setItem('ms_username', _this.param.username);
+                 localStorage.setItem('authority', _this.authority_radio);
+                 this.$router.push('/');
+              }
+            }
           }
         },
+        // userLogin(){
+        //    post(SH_API + "/login/wechat", {
+        //       avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/nDhSicagXjthR5MoLHZSqK7nkkSDIcniaD7w9XXib2v4T1vPpAgGhMn2BHECSIvQT2f4OsiaW92VkXBKiaiaekzqrDHg/132",
+        //       code: code,
+        //       gender: userInfo.gender,
+        //       nickname: userInfo.nickName,
+        //       phone: ""
+        //     }).then(resData => {
+        //       // 存储token,加入Storage缓存
+        //       wx.setStorage({key: "token",data: resData.data});
+        //       this.isLogin = true;
+        //       this.Toast_login();
+        //     }); 
+        // },
         submitForm() {
             this.$refs.login.validate(valid => {
                 if (valid) {

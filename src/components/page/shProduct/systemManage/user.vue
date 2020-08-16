@@ -27,7 +27,9 @@
                 border
                 class="table"
                 ref="multipleTable"
-                header-cell-class-name="table-header">
+                header-cell-class-name="table-header"
+                @selection-change="handleSelectionChange">
+                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="username" label="昵称" align="center"></el-table-column>
                 <el-table-column prop="gender" label="性别" align="center"></el-table-column>
                 <el-table-column prop="birth" label="出生日期" align="center"></el-table-column>
@@ -36,6 +38,21 @@
                 <el-table-column prop="dormitory" label="宿舍号" align="center"></el-table-column>
                 <el-table-column prop="clazz" label="班级" align="center"></el-table-column>
                 <el-table-column prop="sno" label="学号" align="center"></el-table-column>
+                <el-table-column label="操作" width="180" align="center">
+                    <template slot-scope="scope">
+                        <el-button
+                            type="text"
+                            icon="el-icon-edit"
+                            @click="handleEdit(scope.$index, scope.row)"
+                        >编辑</el-button>
+                        <el-button
+                            type="text"
+                            icon="el-icon-delete"
+                            class="red"
+                            @click="handleDelete(scope.$index, scope.row)"
+                        >删除</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
         </div>
 
@@ -80,7 +97,7 @@
 import {get,post} from '@/utils/request';
 import {SH_API} from '@/api/index'
 export default {
-    name: 'order_info_report',
+    name: 'user',
     data() {
         return {
             query: {
@@ -108,8 +125,8 @@ export default {
           get(SH_API+"/user")
           .then( data =>{
             if(data.code === 200){
-              if(data.data.length > 0){
-                this.userData = data.data;
+              if(data.data !== {}){
+                this.userData.push(data.data);
               }
             }
           })
@@ -161,6 +178,11 @@ export default {
               this.getDate();
             }
           })
+        },
+
+         // 多选操作
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
         },
     }
 };

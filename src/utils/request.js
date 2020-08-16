@@ -2,14 +2,16 @@ import axios from 'axios';
 import {API} from '@/api/index'
 import {SH_API} from '@/api/index'
 
+
 const service = axios.create({
     // process.env.NODE_ENV === 'development' 来判断是否开发环境
     // easy-mock服务挂了，暂时不使用了
     // baseURL: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
     timeout: 5000,
     headers: {
-      'Content-Type': "application/json;charset=utf-8",
-      'Access-Control-Allow-Origin':'*'
+      'Content-Type': "application/json; charset=utf-8",
+      'Access-Control-Allow-Origin':'*',
+      'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvIiwiZXhwIjoxNTk4MTcwMzE1fQ.4o3va_AFA5oJZ5ro_aP4qoqBbi_uwe8ZKqkyiim1_RmDTOCm86O-3vQNKktiSDhUzuUp2OpvxttV0him7321ug",
     }
 });
 
@@ -50,6 +52,7 @@ function request(url, method, data, headers={}){
       headers: {
         'Content-Type': "application/json;charset=utf-8",
         'Access-Control-Allow-Origin':'*',
+        'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvIiwiZXhwIjoxNTk4MTcwMzE1fQ.4o3va_AFA5oJZ5ro_aP4qoqBbi_uwe8ZKqkyiim1_RmDTOCm86O-3vQNKktiSDhUzuUp2OpvxttV0him7321ug",
       }
      })
       .then(res => {

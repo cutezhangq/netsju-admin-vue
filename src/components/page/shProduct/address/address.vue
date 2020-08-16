@@ -163,7 +163,7 @@ import {get,post,del,put} from '@/utils/request';
 import {SH_API} from '@/api/index';
 import { provinceAndCityData, regionData, provinceAndCityDataPlus, regionDataPlus, CodeToText, TextToCode } from 'element-china-area-data'
 export default {
-    name: 'floor_info',
+    name: 'address',
     data() {
         return {
             query: {
@@ -196,15 +196,19 @@ export default {
     methods: {
         //获取roomType数据
         getDate(){
-          get(SH_API + "/address")
+           get(SH_API + `/address`)
           .then( data =>{
             if(data.code === 200){
-                if(data.data.length > 0){
-                    this.addressData = data.data;
+              if(data.data.length > 0){
+                this.addressData = data.data;
+                this.pageTotal = data.data.count || 0;  //总条数
+                this.query.pageIndex = data.data.index;  //当前页号
+                this.query.pageSize = data.data.pageSize  //限制每页数据条数
               }
             }
           })
         },
+        
         // 触发搜索按钮
         handleSearch() {
           let query_name = this.query.queryName;

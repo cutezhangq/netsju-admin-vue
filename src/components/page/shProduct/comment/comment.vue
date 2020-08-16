@@ -63,7 +63,7 @@
 
 <script>
 import {get,post} from '@/utils/request';
-
+import {SH_API} from '@/api/index';
 export default {
     name: 'checkin_info_report',
     data() {
@@ -94,7 +94,7 @@ export default {
     },
     methods: {
         getDate(){
-          post(SH_API+`/comment/productId`)
+          get(SH_API+`/comment/productId`)
           .then( data =>{
             if(data.code === 200){
               if(data.data.infoList.length > 0){
