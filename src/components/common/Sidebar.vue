@@ -85,10 +85,10 @@ export default {
                         // {
                         //     index: 'member_info',
                         //     title: '会员管理'
-                        // }
+                        // },
                           {
                             index: 'quality',
-                            title: '精品管理'
+                            title: '商品管理'
                         },
                     ]
                 },
