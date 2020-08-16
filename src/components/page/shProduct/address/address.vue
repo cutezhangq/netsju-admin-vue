@@ -29,7 +29,7 @@
               class="handle-del mr10"
           >备注</el-button>
           </el-tooltip>
-                <!-- 搜索 关键词 -->
+             <!-- 搜索 关键词 -->
                 <!-- <el-select v-model="query.queryName" placeholder="关键词" class="handle-select mr10">
                     <el-option key="1" label="城市" value="address"></el-option>
                     <el-option key="2" label="学校" value="university"></el-option>
@@ -103,9 +103,6 @@
                         @change="addressChange">
                     </el-cascader>
                  </el-form-item>
-                 <!-- <el-form-item label="详细地址">
-                    <el-input v-model="add_form.detailAddress"></el-input>
-                 </el-form-item> -->
                 <el-form-item label="学校">
                     <el-input v-model="add_form.university"></el-input>
                 </el-form-item>
