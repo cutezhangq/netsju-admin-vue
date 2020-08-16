@@ -49,7 +49,7 @@ export default new Router({
                 {
                   path:'/quality',
                   component: () => import('../components/page/shProduct/BasicInfoManage/quality.vue'),
-                   meta: { title: '精品管理',permission: true ,auth_admin:true}
+                   meta: { title: '商品管理',permission: true ,auth_admin:true}
                 },
                 
                 // 地址管理
@@ -124,27 +124,27 @@ export default new Router({
                 // },
 
                 // // 报表管理
-                // {
-                //   path:'/order_info_report',
-                //   component: () => import('../components/page/reportManage/order_info_report.vue'),
-                //    meta: { title: '预定客人报表',permission: true ,auth_admin:true ,auth_jinLi:true}
-                // },
-                // {
-                //   path:'/checkin_info_report',
-                //   component: () => import('../components/page/reportManage/checkin_info_report.vue'),
-                //    meta: { title: '入住客人报表' ,permission: true ,auth_admin:true ,auth_jinLi:true}
-                // },
+                {
+                  path:'/order_info_report',
+                  component: () => import('../components/page/reportManage/order_info_report.vue'),
+                   meta: { title: '预定客人报表',permission: true ,auth_admin:true ,auth_jinLi:true}
+                },
+                {
+                  path:'/checkin_info_report',
+                  component: () => import('../components/page/reportManage/checkin_info_report.vue'),
+                   meta: { title: '入住客人报表' ,permission: true ,auth_admin:true ,auth_jinLi:true}
+                },
                 
-                // {
-                //   path:'/today_bill_info',
-                //   component: () => import('../components/page/reportManage/today_bill_info.vue'),
-                //    meta: { title: '当日消费人数报表' ,permission: true ,auth_admin:true ,auth_jinLi:true }
-                // },
-                // {
-                //   path:'/today_leavecustomers',
-                //   component: () => import('../components/page/reportManage/today_leavecustomers.vue'),
-                //    meta: { title: '当日离店人数报表',permission: true ,auth_admin:true ,auth_jinLi:true}
-                // },
+                {
+                  path:'/today_bill_info',
+                  component: () => import('../components/page/reportManage/today_bill_info.vue'),
+                   meta: { title: '当日消费人数报表' ,permission: true ,auth_admin:true ,auth_jinLi:true }
+                },
+                {
+                  path:'/today_leavecustomers',
+                  component: () => import('../components/page/reportManage/today_leavecustomers.vue'),
+                   meta: { title: '当日离店人数报表',permission: true ,auth_admin:true ,auth_jinLi:true}
+                },
 
 
                 // // 系统管理

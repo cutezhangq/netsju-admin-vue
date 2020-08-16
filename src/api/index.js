@@ -30,5 +30,7 @@ export const fetch_AnimatBar = query => {
   });
 };
 
+//全局API
 export const DataSet = require('@antv/data-set');
 export const API = "http://localhost:8080/hotelManage"
+export const SH_API = "http://118.190.160.249:18000"

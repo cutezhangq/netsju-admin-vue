@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {API} from '@/api/index'
+import {SH_API} from '@/api/index'
 
 const service = axios.create({
     // process.env.NODE_ENV === 'development' 来判断是否开发环境
@@ -42,12 +43,13 @@ export default service;
 function request(url, method, data, headers={}){
   return new Promise((resolve,reject)=>{
     axios({
-      url: API + url,
+      //url: API + url,
+      url,
       method,
       data,
       headers: {
         'Content-Type': "application/json;charset=utf-8",
-        'Access-Control-Allow-Origin':'*'
+        'Access-Control-Allow-Origin':'*',
       }
      })
       .then(res => {
@@ -63,4 +65,10 @@ export function get(url,data){
 }
 export function post(url,data){
   return request(url,"POST",data);
+}
+export function del(url,data){
+  return request(url,"DELETE",data);
+}
+export function put(url,data){
+  return request(url,"PUT",data);
 }
