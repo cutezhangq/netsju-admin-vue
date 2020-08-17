@@ -2,12 +2,8 @@
     <div>
         <div class="crumbs">
             <el-tabs v-model="activeName" @tab-click="handleClick">
-              <el-tab-pane label="全部订单" name="first"></el-tab-pane>
-              <el-tab-pane label="待支付" name="second"></el-tab-pane>
-              <el-tab-pane label="待收货" name="third"></el-tab-pane>
-            </el-tabs>
-        </div>
-        <div class="container">
+              <el-tab-pane label="全部订单" name="allOrder">
+                    <div class="container">
             <!-- 新增、删除、搜索 -->
             <div class="handle-box">
                 <el-button
@@ -22,6 +18,13 @@
                     class="handle-del mr10"
                     @click="addDate"
                 >新增数据</el-button>
+          <el-tooltip content="询全部数据" placement="top">
+              <el-button
+              type="info"
+              icon="el-icon-info"
+              class="handle-del mr10"
+          >备注</el-button>
+          </el-tooltip>
                 <!-- 搜索 关键词 -->
                 <el-select v-model="query.queryName" placeholder="关键词" class="handle-select mr10">
                     <el-option key="1" label="商品名称" value="productName"></el-option>
@@ -31,51 +34,56 @@
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
             </div>
             <!-- 表格的表头：表内容通过prop绑定数据 -->
-            <el-table
-                :data="orderData"
-                border
-                class="table"
-                ref="multipleTable"
-                header-cell-class-name="table-header"
-                @selection-change="handleSelectionChange">
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="orderId" label="订单号" align="center"></el-table-column>
-                <el-table-column label="订单信息" align="center">
-                   <div v-for="(item ,index) in orderItemDtoList" :key="index">
-                     <el-table-column prop="item.productImg" label="商品图片" align="center"></el-table-column>
-                     <el-table-column prop="item.productName" label="商品名称" align="center"></el-table-column>
-                     <el-table-column prop="item.price" label="商品价格" align="center"></el-table-column>
-                     <el-table-column prop="item.num" label="商品数量" align="center"></el-table-column>
-                   </div>
-                </el-table-column>
-               
-                <el-table-column prop="realPayment" label="商品总价" align="center"></el-table-column>
-                <el-table-column prop="username" label="收货人" align="center"></el-table-column>
-                <el-table-column prop="phone" label="收货人电话" align="center"></el-table-column>
-                <!-- <el-table-column prop="receiverProvince,receiverCity,receiverArea,receiverUniversity,receiverCampus,receiverDormitory,receiverRoom"
-                label="收货地址" align="center">
-                  <template slot-scope="scope">
-                        {{scope.row.receiverProvince}}{{scope.row.receiverCity}}{{scope.row.receiverArea}}
-                        {{scope.row.receiverUniversity}}{{scope.row.receiverCampus}}{{scope.row.receiverDormitory}}{{scope.row.receiverRoom}}
-                    </template>
-                </el-table-column> -->
-                <el-table-column label="操作" width="180" align="center">
+            <div v-for="(item ,index) in orderData" :key="index">
+               <div class="orderTop">
+                <span class="orderInfoTop">
+                  订单号:{{item.orderId}}
+                </span>
+                <span class="orderInfoTop">
+                  商品总价:{{item.realPayment}}
+                </span>
+                 <span class="orderInfoTop">
+                  收货人编号:{{item.sellerId}}
+                </span>
+               </div>
+                <el-table
+                  :data="item.orderItemDtoList"
+                  border
+                  class="table"
+                  ref="multipleTable"
+                  header-cell-class-name="table-header"
+                  @selection-change="handleSelectionChange"
+                  style="margin-bottom: 40px;">
+                  <el-table-column type="selection" width="55" align="center"></el-table-column>
+                  <el-table-column prop="productImg" label="商品图片" align="center"></el-table-column>
+                  <el-table-column prop="productName" label="商品名称" align="center"></el-table-column>
+                  <el-table-column prop="price" label="商品价格" align="center"></el-table-column>
+                  <el-table-column prop="num" label="商品数量" align="center"></el-table-column>
+                  <!-- <el-table-column prop="phone" label="收货人电话" align="center"></el-table-column> -->
+                  <!-- <el-table-column prop="receiverProvince,receiverCity,receiverArea,receiverUniversity,receiverCampus,receiverDormitory,receiverRoom"
+                  label="收货地址" align="center">
                     <template slot-scope="scope">
-                        <el-button
-                            type="text"
-                            icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button>
-                        <el-button
-                            type="text"
-                            icon="el-icon-delete"
-                            class="red"
-                            @click="handleDelete(scope.$index, scope.row)"
-                        >删除</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-           
+                          {{scope.row.receiverProvince}}{{scope.row.receiverCity}}{{scope.row.receiverArea}}
+                          {{scope.row.receiverUniversity}}{{scope.row.receiverCampus}}{{scope.row.receiverDormitory}}{{scope.row.receiverRoom}}
+                      </template>
+                  </el-table-column> -->
+                  <el-table-column label="操作" width="180" align="center">
+                      <template slot-scope="scope">
+                          <el-button
+                              type="text"
+                              icon="el-icon-edit"
+                              @click="handleEdit(scope.$index, scope.row)"
+                          >编辑</el-button>
+                          <el-button
+                              type="text"
+                              icon="el-icon-delete"
+                              class="red"
+                              @click="handleDelete(scope.$index, scope.row)"
+                          >删除</el-button>
+                      </template>
+                  </el-table-column>
+              </el-table>
+            </div>
         </div>
 
         <!-- 新增弹出框 -->
@@ -112,6 +120,17 @@
                 <el-button type="primary" @click="saveEdit">确 定</el-button>
             </span>
         </el-dialog>
+
+              </el-tab-pane>
+              <el-tab-pane label="待支付" name="PayOrder">
+              待支付
+              </el-tab-pane>
+              <el-tab-pane label="待收货" name="ReceiptOrder">
+              待收货
+              </el-tab-pane>
+            </el-tabs>
+        </div>
+    
     </div>
 </template>
 
@@ -128,7 +147,7 @@ export default {
                 pageIndex: 1,
                 pageSize: 5,
             },
-            activeName: 'first',
+            activeName: 'allOrder',
             orderData:[],
             orderItemDtoList:[],
             multipleSelection: [],
@@ -314,5 +333,13 @@ export default {
     margin: auto;
     width: 40px;
     height: 40px;
+}
+.orderTop{
+  margin-bottom: 10px;
+  color: #676767;
+}
+.orderInfoTop{
+  margin-right: 60px;
+  
 }
 </style>

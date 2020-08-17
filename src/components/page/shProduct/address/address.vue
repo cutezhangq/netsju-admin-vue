@@ -55,12 +55,12 @@
                 <el-table-column prop="phone" label="电话号码" align="center"></el-table-column>
                 <el-table-column prop="province,city,area" label="收货地址" align="center">
                     <template slot-scope="scope">
-                        {{scope.row.province}}{{scope.row.city}}{{scope.row.area}}
+                        {{scope.row.province}} {{scope.row.city}} {{scope.row.area}}
                     </template>
                 </el-table-column>
                 <el-table-column prop="university,campus+dormitory,room" label="详细地址" align="center">
                     <template slot-scope="scope">
-                        {{scope.row.university}}{{scope.row.dormitory}}{{scope.row.room}}
+                        {{scope.row.university}} {{scope.row.dormitory}} {{scope.row.room}}
                     </template>
                 </el-table-column>
                  <el-table-column prop="comment" label="备注" align="center"></el-table-column>
@@ -148,10 +148,7 @@
                         @change="addressChange">
                     </el-cascader>
                 </el-form-item>
-                <el-form-item label="详细地址">
-                    <el-input v-model="add_form.detailAddress"></el-input>
-                 </el-form-item>
-                <!-- <el-form-item label="学校">
+                <el-form-item label="学校">
                     <el-input v-model="form.university"></el-input>
                 </el-form-item>
                 <el-form-item label="校区">
@@ -162,7 +159,11 @@
                 </el-form-item>
                 <el-form-item label="宿舍号">
                     <el-input v-model="form.room"></el-input>
-                </el-form-item> -->
+                </el-form-item>
+                <el-form-item label="详细地址">
+                    <el-input v-model="form.comment"></el-input>
+                 </el-form-item>
+                
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
@@ -196,7 +197,14 @@ export default {
             add_form:{ //新增数据
               nickname: "",
               phone: "",
-              detailAddress:""
+              province:"",
+              city:"",
+              area:"",
+              university: "",
+              campus: "",
+              dormitory: "",
+              room: "",
+              comment:""
             },
             idx: -1,  //当前修改条目的id
             id: -1,
@@ -249,15 +257,18 @@ export default {
         addressChange(arr) {
           console.log(arr);
           console.log(CodeToText[arr[0]], CodeToText[arr[1]], CodeToText[arr[2]]);
+          this.province = CodeToText[arr[0]];
+          this.city = CodeToText[arr[1]];
+          this.area =  CodeToText[arr[2]]
         },
         //保存新增
         saveAdd(){
           post(SH_API+"/address",{
             nickname:this.add_form.nickname,
             phone:this.add_form.phone,
-            province:"江苏省",
-            city:"南京市",
-            area:"雨花台区",
+            province:this.province,
+            city:this.city,
+            area:this.area,
             // selectedOptions:this.selectedOptions,//省市区
             // detailAddress:this.add_form.detailAddress,//详细地址
             university: this.add_form.university,
@@ -354,14 +365,14 @@ export default {
             // campus: curEdit_row.campus,
             // dormitory: curEdit_row.dormitory,
             // room: curEdit_row.room,
-            area: "江宁区",
-            campus: "江宁区",
-            city: "南京市",
-            dormitory: "8号楼",
+            area: this.area,
+            campus: this.campus,
+            city: this.city,
+            dormitory: curEdit_row.dormitory,
             isDefault: 0,
-            province: "江苏省",
-            room: "303",
-            university: "中国药科大学",
+            province: curEdit_row.province,
+            room: curEdit_row.room,
+            university: curEdit_row.university,
             comment: curEdit_row.comment
           })
           .then( data =>{
