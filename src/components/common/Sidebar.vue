@@ -63,131 +63,96 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-cascades',
-                    index: 'BasicInfoManage',
-                    title: '基础信息管理',
+                    index: 'systemManage',
+                    title: '系统管理',
                     subs: [
-                        // {
-                        //     index: 'room_type',
-                        //     title: '客房类型管理'
-                        // },
-                        // {
-                        //     index: 'floor_info',
-                        //     title: '楼层管理'
-                        // },
-                        // {
-                        //     index: 'goods_type',
-                        //     title: '商品类别管理'
-                        // },
-                        // {
-                        //     index: 'goods_info',
-                        //     title: '商品信息管理'
-                        // },
-                        // {
-                        //     index: 'member_info',
-                        //     title: '会员管理'
-                        // },
-                          {
-                            index: 'quality',
-                            title: '商品管理'
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'admin',
+                            title: '管理员信息管理'
+                        },
+                        {
+                            index: 'user',
+                            title: '用户管理'
+                        },
+                        {
+                            index: 'quality2',
+                            title: '日志管理'
+                        },
+                        {
+                            index: 'quality3',
+                            title: '图表数据管理'
                         },
                     ]
                 },
                 {
-                    icon: 'el-icon-office-building',
-                    index: 'address',
-                    title: '地址管理'
+                    icon: 'el-icon-lx-cascades',
+                    index: 'BasicInfoManage',
+                    title: '核心业务管理',
+                    subs: [
+                       {
+                            icon: 'el-icon-office-building',
+                            index: 'cart',
+                            title: '购物车'
+                        },
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'order',
+                            title: '订单管理'
+                        },
+                        {
+                            index: 'quality4',
+                            title: '支付管理'
+                        },
+                    ]
                 },
                 {
-                    icon: 'el-icon-office-building',
-                    index: 'order',
-                    title: '订单管理'
+                    icon: 'el-icon-lx-cascades',
+                    index: 'BasicInfoManage',
+                    title: '基础信息管理',
+                    subs: [
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'quality',
+                            title: '商品管理'
+                        },
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'address2',
+                            title: '分类管理'
+                        },
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'comment',
+                            title: '评论回复管理'
+                        },
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'address3',
+                            title: '广告管理'
+                        },
+                       {
+                            icon: 'el-icon-office-building',
+                            index: 'address2',
+                            title: '地址管理'
+                        },
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'address3',
+                            title: '收藏管理'
+                        },
+                        {
+                            icon: 'el-icon-office-building',
+                            index: 'address4',
+                            title: '历史记录管理'
+                        },
+                        // {
+                        //     icon: 'el-icon-office-building',
+                        //     index: 'user',
+                        //     title: '用户信息维护'
+                        // },
+                    ]
                 },
-                {
-                    icon: 'el-icon-office-building',
-                    index: 'cart',
-                    title: '购物车'
-                },
-                {
-                    icon: 'el-icon-office-building',
-                    index: 'comment',
-                    title: '商品留言评论'
-                },
-                {
-                    icon: 'el-icon-office-building',
-                    index: 'user',
-                    title: '用户信息维护'
-                },
-                // {
-                //     icon: 'el-icon-office-building',
-                //     index: 'room_info',
-                //     title: '客房管理'
-                // },
-                // {
-                //     icon: 'el-icon-user',
-                //     index: 'tenantManage',
-                //     title: '房客管理',
-                //     subs: [
-                //         {
-                //             index: 'order_info',
-                //             title: '预定'
-                //         },
-                //         {
-                //             index: 'checkin_info',
-                //             title: '入住'
-                //         },
-                //         {
-                //             index: 'replace-room',
-                //             title: '换房'
-                //         },
-                //         {
-                //             index: 'bill_info',
-                //             title: '退房结帐'
-                //         },
-                //     ]
-                // },
-                // {
-                //     icon: 'el-icon-shopping-cart-1',
-                //     index: 'cost_info',
-                //     title: '消费管理'
-                // },
-                // {
-                //     icon: 'el-icon-tickets',
-                //     index: 'reportManage',
-                //     title: '报表管理',
-                //     subs: [
-                //         {
-                //             index: 'order_info_report',
-                //             title: '预定客人报表'
-                //         },
-                //         {
-                //             index: 'checkin_info_report',
-                //             title: '入住客人报表'
-                //         },
-                //         {
-                //             index: 'today_bill_info',
-                //             title: '当日消费人数报表'
-                //         },
-                //         {
-                //             index: 'today_leavecustomers',
-                //             title: '当日离店人数报表'
-                //         }
-                //     ]
-                // },
-                // {
-                //     icon: 'el-icon-setting',
-                //     index: 'systemManage',
-                //     title: '系统管理',
-                //     subs: [
-                //         {
-                //             index: 'user_info',
-                //             title: '用户信息维护'
-                //         },
-                //         {
-                //             index: 'log_info',
-                //             title: '日志信息维护'
-                //         }
-                //     ]
-                // },
             ]
         };
     },

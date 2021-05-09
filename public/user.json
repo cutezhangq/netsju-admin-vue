@@ -1,0 +1,30 @@
+[
+    {
+        "username": "小王",
+        "gender": "男",
+        "birth": "1997-01-01",
+        "introduction": "暂无",
+        "phone": "13930293452"
+    },
+    {
+        "username": "小李",
+        "gender": "女",
+        "birth": "1998-02-01",
+        "introduction": "暂无",
+        "phone": "13911265467"
+    },
+    {
+        "username": "小于",
+        "gender": "女",
+        "birth": "1999-12-04",
+        "introduction": "用于测试管理员权限",
+        "phone": "13863266789"
+    },
+    {
+        "username": "小徐",
+        "gender": "男",
+        "birth": "2000-08-11",
+        "introduction": "暂无",
+        "phone": "13677268832"
+    }
+]

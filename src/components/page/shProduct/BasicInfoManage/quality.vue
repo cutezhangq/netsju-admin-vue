@@ -38,15 +38,15 @@
                 class="table"
                 ref="multipleTable"
                 header-cell-class-name="table-header">
-                <el-table-column prop="pid" label="商品序列号" align="center"></el-table-column>
-                <el-table-column prop="pimg" label="商品图片" align="center">
+                <el-table-column prop="id" label="商品序列号" align="center"></el-table-column>
+                <el-table-column prop="cover_url" label="商品图片" align="center">
                     <template   slot-scope="scope">            
-                        <img :src="scope.row.pimg" min-width="150" height="150"/><!-- min-width="70" height="70" -->
+                        <img :src="scope.row.cover_url" min-width="150" height="150"/><!-- min-width="70" height="70" -->
                     </template> 
                 </el-table-column>
-                <el-table-column prop="pname" label="商品名称" align="center"></el-table-column>
+                <el-table-column prop="name" label="商品名称" align="center"></el-table-column>
                 <el-table-column prop="price" label="单价" align="center"></el-table-column>
-                <el-table-column prop="username" label="商品发布人" align="center"></el-table-column>
+                <el-table-column prop="username" label="商品发布人" align="center">王老板</el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -82,6 +82,8 @@
 <script>
 import {get,post,del,put} from '@/utils/request';
 import {SH_API} from '@/api/index'
+import sh_productDate from '../../../../../public/sh_product.json';
+
 export default {
     name: 'quality',
     data() {
@@ -105,17 +107,19 @@ export default {
     methods: {
            //获取roomType数据
         getDate(){
-          get(SH_API + `/shProduct/index?page=${this.page}`)
-          .then( data =>{
-            if(data.code === 200){
-              if(data.data.length > 0){
-                this.productData = data.data;
-                this.pageTotal = data.data.count || 0;  //总条数
-                this.query.pageIndex = data.data.index;  //当前页号
-                this.query.pageSize = data.data.pageSize  //限制每页数据条数
-              }
-            }
-          })
+        //   get(SH_API + `/shProduct/index?page=${this.page}`)
+        //   .then( data =>{
+        //     if(data.code === 200){
+        //       if(data.data.length > 0){
+        //         this.productData = data.data;
+        //         this.pageTotal = data.data.count || 0;  //总条数
+        //         this.query.pageIndex = data.data.index;  //当前页号
+        //         this.query.pageSize = data.data.pageSize  //限制每页数据条数
+        //       }
+        //     }
+        //   })
+        console.log('——qualityDate——', sh_productDate.RECORDS);
+        this.productData = sh_productDate.RECORDS;
         },
         // 触发搜索按钮
         handleSearch() {

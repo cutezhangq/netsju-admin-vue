@@ -14,11 +14,11 @@
           </div>
           <div class="user-info-list">
             上次登录时间：
-            <span>2020-08-10</span>
+            <span>2021-05-01</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
-            <span>南京</span>
+            <span>上海</span>
           </div>
         </el-card>
         <!-- 进度条面板 -->
@@ -155,7 +155,7 @@
         nv:579, //数量
         name: localStorage.getItem('ms_username'),
         todoList: [{
-            title: '直营商铺对检查结果制定实际可行的整改方审定批',
+            title: '直营商铺对检查结果制定实际可行的整改方审定批示。',
             status: false
           },
           {
@@ -171,7 +171,7 @@
             status: false
           },
           {
-            title: '入驻商铺内容整改',
+            title: '入驻商铺所以商品的内容整改',
             status: true
           },
           {
@@ -386,7 +386,7 @@
 
       // 折线散点图
       init_lineChart() {
-        this.msg.lineChart_msg = "商品物流量密度图";
+        this.msg.lineChart_msg = "商品每月销售量密度图";
         fetch_diamond(this.query)
           .then((data) => {
             const lineChart = new this.$G2.Chart({
@@ -460,7 +460,7 @@
         };
       },
       init_keywords() {
-        this.msg.keywords_msg = "SJU商铺词云";
+        this.msg.keywords_msg = "入驻商铺词云";
         let _this = this;
         // 给 point 注册一个词云的 shape
         this.$G2.registerShape('point', 'cloud', {

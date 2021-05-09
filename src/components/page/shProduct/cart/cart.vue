@@ -10,18 +10,6 @@
         <div class="container">
             <!-- 新增、删除、搜索 -->
             <div class="handle-box">
-                <!-- <el-button
-                    type="danger"
-                    icon="el-icon-delete"
-                    class="handle-del mr10"
-                    @click="delAllSelection"
-                >批量删除</el-button> -->
-                <!-- <el-button
-                    type="success"
-                    icon="el-icon-plus"
-                    class="handle-del mr10"
-                    @click="addDate"
-                >新增数据</el-button> -->
           <el-tooltip content="删除单条数据、修改数据、查询全部数据" placement="top">
               <el-button
               type="info"
@@ -48,21 +36,10 @@
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="商品ID" align="center"></el-table-column>
-                <el-table-column prop="name" label="商品名称" align="center"></el-table-column>
-                 <el-table-column prop="pimg" label="商品图片" align="center">
-                    <template   slot-scope="scope">            
-                        <img :src="scope.row.image" min-width="150" height="150"/><!-- min-width="70" height="70" -->
-                    </template> 
-                </el-table-column>
-                <el-table-column prop="price" label="商品价格" align="center"></el-table-column>
-                <el-table-column prop="productNum" label="商品数量" align="center"></el-table-column>
-                <el-table-column prop="userName" label="用户名称" align="center"></el-table-column>
-                  <el-table-column prop="pimg" label="用户头像" align="center">
-                    <template   slot-scope="scope">            
-                        <img :src="scope.row.userImg" min-width="70" height="70"/><!-- min-width="70" height="70" -->
-                    </template> 
-                </el-table-column>
+                <el-table-column prop="id" label="用户ID" align="center"></el-table-column>
+                <el-table-column prop="productId" label="商品ID" align="center"></el-table-column>
+                <el-table-column prop="number" label="商品数量" align="center"></el-table-column>
+                <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
                 <el-table-column prop="comment" label="备注" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -143,7 +120,10 @@
 
 <script>
 import {get,post,del,put} from '@/utils/request';
-import {SH_API} from '@/api/index'
+import {SH_API} from '@/api/index';
+import sh_cartDate from '../../../../../public/sh_cart.json';
+
+
 export default {
     name: 'cart',
     data() {
@@ -176,14 +156,16 @@ export default {
     methods: {
         //获取roomType数据
         getDate(){
-          get(SH_API+"/cart")
-          .then( data =>{
-            if(data.code === 200){
-              if(data.data.length > 0){
-                this.cartData = data.data;
-              }
-            }
-          })
+          // get(SH_API+"/cart")
+          // .then( data =>{
+          //   if(data.code === 200){
+          //     if(data.data.length > 0){
+          //       this.cartData = data.data;
+          //     }
+          //   }
+          // })
+          console.log('——sh_cartDate——',sh_cartDate.RECORDS);
+          this.cartData = sh_cartDate.RECORDS;
         },
         // 触发搜索按钮
         handleSearch() {

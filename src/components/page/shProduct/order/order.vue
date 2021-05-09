@@ -39,26 +39,10 @@
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="orderId" label="订单号" align="center"></el-table-column>
-                <el-table-column label="订单信息" align="center">
-                   <div v-for="(item ,index) in orderItemDtoList" :key="index">
-                     <el-table-column prop="item.productImg" label="商品图片" align="center"></el-table-column>
-                     <el-table-column prop="item.productName" label="商品名称" align="center"></el-table-column>
-                     <el-table-column prop="item.price" label="商品价格" align="center"></el-table-column>
-                     <el-table-column prop="item.num" label="商品数量" align="center"></el-table-column>
-                   </div>
-                </el-table-column>
-               
-                <el-table-column prop="realPayment" label="商品总价" align="center"></el-table-column>
-                <el-table-column prop="username" label="收货人" align="center"></el-table-column>
-                <el-table-column prop="phone" label="收货人电话" align="center"></el-table-column>
-                <!-- <el-table-column prop="receiverProvince,receiverCity,receiverArea,receiverUniversity,receiverCampus,receiverDormitory,receiverRoom"
-                label="收货地址" align="center">
-                  <template slot-scope="scope">
-                        {{scope.row.receiverProvince}}{{scope.row.receiverCity}}{{scope.row.receiverArea}}
-                        {{scope.row.receiverUniversity}}{{scope.row.receiverCampus}}{{scope.row.receiverDormitory}}{{scope.row.receiverRoom}}
-                    </template>
-                </el-table-column> -->
+                <el-table-column prop="order_sn" label="订单号" align="center"></el-table-column>
+                <el-table-column prop="real_payment" label="商品总价" align="center"></el-table-column>
+                <el-table-column prop="buyerId" label="收货人ID" align="center"></el-table-column>
+                <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -117,7 +101,10 @@
 
 <script>
 import {get,post,del,put} from '@/utils/request';
-import {SH_API} from '@/api/index'
+import {SH_API} from '@/api/index';
+import sh_orderDate from '../../../../../public/sh_order.json';
+
+
 export default {
     name: 'order',
     data() {
@@ -154,15 +141,17 @@ export default {
       },
         //获取roomType数据
         getDate(){
-          post(SH_API + `/order/search/0`,{})
-          .then( data =>{
-            if(data.code === 200){
-              if(data.data.length > 0){
-                this.orderData = data.data;
-                this.orderItemDtoList =  data.data.orderItemDtoList;
-              }
-            }
-          })
+          // post(SH_API + `/order/search/0`,{})
+          // .then( data =>{
+          //   if(data.code === 200){
+          //     if(data.data.length > 0){
+          //       this.orderData = data.data;
+          //       this.orderItemDtoList =  data.data.orderItemDtoList;
+          //     }
+          //   }
+          // })
+          console.log(sh_orderDate.RECORDS);
+          this.orderData =  sh_orderDate.RECORDS;
         },
         // 触发搜索按钮
         handleSearch() {

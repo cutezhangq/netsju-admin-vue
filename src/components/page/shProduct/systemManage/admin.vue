@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 用户管理
+                    <i class="el-icon-lx-cascades"></i> 管理员信息管理
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -30,10 +30,10 @@
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange">
                  <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="username" label="昵称" align="center"></el-table-column>
-                <el-table-column prop="gender" label="性别" align="center"></el-table-column>
-                <el-table-column prop="birth" label="出生日期" align="center"></el-table-column>
-                <el-table-column prop="introduction" label="个人简介" align="center"></el-table-column>
+                <el-table-column prop="username" label="姓名" align="center"></el-table-column>
+                <el-table-column prop="password" label="密码" align="center"></el-table-column>
+                <el-table-column prop="created" label="注册时间" align="center"></el-table-column>
+                <el-table-column prop="modified" label="修改日期" align="center"></el-table-column>
                 <el-table-column prop="phone" label="手机号" align="center"></el-table-column>
                 <!-- <el-table-column prop="dormitory" label="宿舍号" align="center"></el-table-column>
                 <el-table-column prop="clazz" label="班级" align="center"></el-table-column>
