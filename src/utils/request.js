@@ -2,6 +2,7 @@ import axios from 'axios';
 import {API} from '@/api/index'
 import {SH_API} from '@/api/index'
 
+const Token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLlsI_njosiLCJleHAiOjE2ODUzNDYyNDAsInVzZXJJZCI6NiwiaWF0IjoxNTk4OTQ2MjQwfQ.POfXbH7ZL7yuGNfZznbqaPo_4MdpuK0Ps_vS68a6Zx0zFL6BNtG9Nw_0bYDYE76Y8QqYFkduMtVps8wSLJagbQ"
 
 const service = axios.create({
     // process.env.NODE_ENV === 'development' 来判断是否开发环境
@@ -11,7 +12,9 @@ const service = axios.create({
     headers: {
       'Content-Type': "application/json; charset=utf-8",
       'Access-Control-Allow-Origin':'*',
-      'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvIiwiZXhwIjoxNTk4MTcwMzE1fQ.4o3va_AFA5oJZ5ro_aP4qoqBbi_uwe8ZKqkyiim1_RmDTOCm86O-3vQNKktiSDhUzuUp2OpvxttV0him7321ug",
+      // 'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvIiwiZXhwIjoxNTk4MTcwMzE1fQ.4o3va_AFA5oJZ5ro_aP4qoqBbi_uwe8ZKqkyiim1_RmDTOCm86O-3vQNKktiSDhUzuUp2OpvxttV0him7321ug",
+      'Authorization': Token,
+    
     }
 });
 
@@ -52,7 +55,9 @@ function request(url, method, data, headers={}){
       headers: {
         'Content-Type': "application/json;charset=utf-8",
         'Access-Control-Allow-Origin':'*',
-        'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvIiwiZXhwIjoxNTk4MTcwMzE1fQ.4o3va_AFA5oJZ5ro_aP4qoqBbi_uwe8ZKqkyiim1_RmDTOCm86O-3vQNKktiSDhUzuUp2OpvxttV0him7321ug",
+        // 'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6ZXJvIiwiZXhwIjoxNTk4MTcwMzE1fQ.4o3va_AFA5oJZ5ro_aP4qoqBbi_uwe8ZKqkyiim1_RmDTOCm86O-3vQNKktiSDhUzuUp2OpvxttV0him7321ug",
+        'Authorization': Token
+    
       }
      })
       .then(res => {

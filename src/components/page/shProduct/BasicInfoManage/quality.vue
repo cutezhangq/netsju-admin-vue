@@ -103,7 +103,6 @@ export default {
       this.getDate();
     },
     methods: {
-           //获取roomType数据
         getDate(){
           get(SH_API + `/shProduct/index?page=${this.page}`)
           .then( data =>{

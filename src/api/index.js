@@ -7,6 +7,7 @@ export const fetchData = query => {
         params: query
     });
 };
+
 //G2的散点图数据
 export const fetch_diamond = query => {
   return request({
@@ -32,5 +33,6 @@ export const fetch_AnimatBar = query => {
 
 //全局API
 export const DataSet = require('@antv/data-set');
-export const API = "http://localhost:8080/hotelManage"
-export const SH_API = "http://118.190.160.249:18000"
+// export const API = "http://localhost:8080/hotelManage" 
+// export const SH_API = "http://118.190.160.249:18000"
+export const SH_API = "http://localhost:18000"

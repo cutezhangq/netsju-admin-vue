@@ -173,7 +173,7 @@ export default {
       },
         //获取roomType数据
         getDate(){
-          post(SH_API + `/order/search/0`,{})
+           post(SH_API + `/order/search/0`,{})
           .then( data =>{
             if(data.code === 200){
               if(data.data.length > 0){

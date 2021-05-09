@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import {get,post} from '@/utils/request';
+import {get,post,del,put} from '@/utils/request';
 import {SH_API} from '@/api/index'
 export default {
     name: 'user',

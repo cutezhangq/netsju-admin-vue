@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 首页内容 -->
     <el-row :gutter="20">
       <!-- 第一行 左边 -->
       <el-col :span="8">
@@ -92,7 +93,23 @@
       </el-col>
     </el-row>
 
-    <!-- 第二行 -->
+    <!--  获取用户访问小程序数据日趋势-->
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <el-card shadow="hover">
+          <h2 class="title_table"> 用户访问小程序数据日趋势 </h2>
+          <div id="" style="margin-top: 10px;"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card shadow="hover">
+          <h2 class="title_table">xxxxxxxx</h2>
+          <div id="" style="margin-top: 10px;"></div>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <!--  状态图、密度图-->
     <el-row :gutter="20">
       <el-col :span="12">
         <el-card shadow="hover">
@@ -108,7 +125,7 @@
       </el-col>
     </el-row>
 
-    <!-- 第三行 -->
+    <!-- 词云、柱状图 -->
     <el-row :gutter="20">
       <el-col :span="12">
         <el-card shadow="hover">
@@ -118,13 +135,13 @@
       </el-col>
       <el-col :span="12">
         <el-card shadow="hover">
-           <h2 class="title_table">{{ msg.barChart_msg }}</h2>
-           <div id="barChart" style="margin-top: 25px;"></div>
+          <h2 class="title_table">{{ msg.barChart_msg }}</h2>
+          <div id="barChart" style="margin-top: 25px;"></div>
         </el-card>
       </el-col>
     </el-row>
 
-      <!-- 第四行 -->
+    <!-- 日历 -->
     <el-row :gutter="20">
       <el-card shadow="hover" style="height:683px;">
         <el-calendar v-model="value"></el-calendar>
@@ -150,9 +167,9 @@
     data() {
       return {
         value: new Date(),
-        pv:134, //访问量
-        mv:623, //消息量
-        nv:579, //数量
+        pv: 134, //访问量
+        mv: 623, //消息量
+        nv: 579, //数量
         name: localStorage.getItem('ms_username'),
         todoList: [{
             title: '直营商铺对检查结果制定实际可行的整改方审定批',
@@ -246,18 +263,18 @@
         ]
       };
     },
-    created(){
+    created() {
       // this.headImg();
     },
     computed: {
       role() {
         let authority = localStorage.getItem('authority');
-        if(authority == 1){
-          return this.role = '超级管理员';  //所有权限
-        }else if(authority == 2){ 
-          return this.role = '平台工作人员';    //对入驻商铺进行管理（平台工作人员）
-        }else if(authority == 3){
-          return this.role = '商铺主';  //对商品进行管理（入驻平台的商铺店主）
+        if (authority == 1) {
+          return this.role = '超级管理员'; //所有权限
+        } else if (authority == 2) {
+          return this.role = '平台工作人员'; //对入驻商铺进行管理（平台工作人员）
+        } else if (authority == 3) {
+          return this.role = '商铺主'; //对商品进行管理（入驻平台的商铺店主）
         }
         // return this.name === 'admin' ? '超级管理员' : '普通用户';
       },
@@ -277,32 +294,74 @@
           item.name = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
         });
       },
-      
-      headImg(){
+
+      //头像
+      headImg() {
         let authority = localStorage.getItem('authority');
-        if(authority == 1){
+        if (authority == 1) {
           return this.headImg = '../../assets/img/user.jpg'
-        }else if(authority == 2){
+        } else if (authority == 2) {
           return this.headImg = '../../assets/img/img.jpg'
-        }else if(authority == 3){
+        } else if (authority == 3) {
           return this.headImg = '../../assets/img/img.jpg'
         }
       },
 
       //进度条形图
-      init_progressBar(){
+      init_progressBar() {
         function getTypeColor(type) {
-          if (type === '全年销售额达标程度') { return '#1890ff'; }
+          if (type === '全年销售额达标程度') {
+            return '#1890ff';
+          }
         }
-        const data = [
-          { class: '全年销售额达标程度', country: '第四季度', type: '1', value: 90.8 },
-          { class: '全年销售额达标程度', country: '第四季度', type: '2', value: 9.2 },
-          { class: '全年销售额达标程度', country: '第三季度', type: '1', value: 72.9 },
-          { class: '全年销售额达标程度', country: '第三季度', type: '2', value: 27.1 },
-          { class: '全年销售额达标程度', country: '第二季度', type: '1', value: 63.6 },
-          { class: '全年销售额达标程度', country: '第二季度', type: '2', value: 36.4 },
-          { class: '全年销售额达标程度', country: '第一季度', type: '1', value: 80.3 },
-          { class: '全年销售额达标程度', country: '第一季度', type: '2', value: 19.7 },
+        const data = [{
+            class: '全年销售额达标程度',
+            country: '第四季度',
+            type: '1',
+            value: 90.8
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第四季度',
+            type: '2',
+            value: 9.2
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第三季度',
+            type: '1',
+            value: 72.9
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第三季度',
+            type: '2',
+            value: 27.1
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第二季度',
+            type: '1',
+            value: 63.6
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第二季度',
+            type: '2',
+            value: 36.4
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第一季度',
+            type: '1',
+            value: 80.3
+          },
+          {
+            class: '全年销售额达标程度',
+            country: '第一季度',
+            type: '2',
+            value: 19.7
+          },
         ];
         const progress_chart = new this.$G2.Chart({
           container: 'progressBar',
@@ -546,9 +605,6 @@
               keyw_chart.render();
             };
           });
-
-
-
       },
 
       //动态图标
@@ -722,7 +778,7 @@
 
       },
 
-      
+
     }
   };
 </script>
@@ -732,12 +788,14 @@
   .el-row {
     margin-bottom: 20px;
   }
-  .title_table{
+
+  .title_table {
     text-align: center;
     color: #404040e3;
     font-size: 25px;
     font-weight: 400;
   }
+
   .grid-content {
     display: flex;
     align-items: center;
